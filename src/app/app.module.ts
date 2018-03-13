@@ -23,12 +23,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import {CategoryComponent} from './category/category.component';
+import {EmployeeComponent} from './employee/employee.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppRoutingModule.COMPONENTS,
-    CategoryComponent
+    CategoryComponent,
+    EmployeeComponent
   ],
   imports: [
     BrowserModule,

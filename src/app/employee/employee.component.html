@@ -1,0 +1,45 @@
+<div>
+    <h1>Employee</h1>
+</div>
+<h4 *ngIf="items != undefined && items.length == 0"> No existe Empleados que desplegar</h4>
+<div class="example-container mat-elevation-z8">
+    <mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="Id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Id}} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Surname">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Surname </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Surname}} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Entry">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Entry </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Entry}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Active">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Active </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Active}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Categoria">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Categoria.title </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Categoria.title}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Area">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Categoria.Area </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Area}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+    <mat-paginator #paginator [length]="5" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]">
+    </mat-paginator>
+</div>
