@@ -22,8 +22,12 @@
         </ng-container>
 
         <ng-container matColumnDef="opciones">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Opciones </mat-header-cell>
-
+           
+            <mat-header-cell *matHeaderCellDef>
+                <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="create()">
+                    <mat-icon color="warn">person_add</mat-icon>
+                </button>
+            </mat-header-cell>
             <mat-cell *matCellDef="let item">
                 <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="edit(item)">
                     <mat-icon color="warn">mode_edit</mat-icon>

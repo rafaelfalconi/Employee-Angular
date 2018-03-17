@@ -11,12 +11,12 @@ import { CategoryCreationEditDialogComponent } from './category-creation-edit-di
 })
 export class CategoryComponent implements OnInit {
     categories: Category[];
-    displayedColumns = ['id', 'rank', 'title','opciones'];
+    displayedColumns = ['id', 'rank', 'title', 'opciones'];
     dataSource: MatTableDataSource<Category>;
     static URL = 'Categories';
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
-    constructor(public dialog: MatDialog, private categoryService:CategoryService) {
+    constructor(public dialog: MatDialog, private categoryService: CategoryService) {
 
     }
     ngOnInit(): void {
@@ -37,13 +37,20 @@ export class CategoryComponent implements OnInit {
     }
     synchronize() {
         this.categoryService.readAll().subscribe(
-            data=>{
-                this.dataSource=new MatTableDataSource<Category>(data);
-                this.dataSource.sort=this.sort
+            data => {
+                this.dataSource = new MatTableDataSource<Category>(data);
+                this.dataSource.sort = this.sort
                 this.dataSource.paginator = this.paginator;
             }
         )
     }
-   
+    create() {
+        const dialogRef = this.dialog.open(CategoryCreationEditDialogComponent);
+        dialogRef.componentInstance.edit = false;
+        dialogRef.afterClosed().subscribe(
+            result => this.synchronize()
+        );
+    }
+
 }
 
