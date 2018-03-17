@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MenuComponent } from './menu/menu.component';
 import { CategoryComponent } from './category/category.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { CategoryCreationEditDialogComponent } from './category/category-creation-edit-dialog.component';
 
 const appRoutes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: MenuComponent.URL },
@@ -25,5 +26,8 @@ export class AppRoutingModule {
     static COMPONENTS = [
         CategoryComponent,
         MenuComponent
+    ]
+    static COMPONENT_FACTORY = [
+        CategoryCreationEditDialogComponent
     ]
 }

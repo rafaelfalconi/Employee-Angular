@@ -1,5 +1,5 @@
 <div>
-   <h1>category</h1> 
+    <h1>category</h1>
 </div>
 <h4 *ngIf="items != undefined && items.length == 0"> No existe categorías que desplegar</h4>
 <div class="example-container mat-elevation-z8">
@@ -21,12 +21,23 @@
             <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
         </ng-container>
 
-
+        <ng-container matColumnDef="opciones">
+           
+            <mat-header-cell *matHeaderCellDef>
+                <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="create()">
+                    <mat-icon color="warn">person_add</mat-icon>
+                </button>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="edit(item)">
+                    <mat-icon color="warn">mode_edit</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
     </mat-table>
-    <mat-paginator #paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 20]">
-    </mat-paginator>
+
 </div>

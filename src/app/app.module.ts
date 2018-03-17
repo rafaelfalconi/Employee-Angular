@@ -21,14 +21,17 @@ import { CdkTableModule } from '@angular/cdk/table';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import {CategoryComponent} from './category/category.component';
-import {EmployeeComponent} from './employee/employee.component';
+import { CoreModule } from './core/core.module';
+import { HttpService } from './core/http.service';
+import { CategoryService } from './category/category.service';
+import { CategoryComponent } from './category/category.component';
+import { EmployeeComponent } from './employee/employee.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppRoutingModule.COMPONENTS,
+    AppRoutingModule.COMPONENT_FACTORY,
     CategoryComponent,
     EmployeeComponent
   ],
@@ -38,6 +41,8 @@ import {EmployeeComponent} from './employee/employee.component';
 
     FormsModule,
     HttpModule,
+    CoreModule,
+
     ReactiveFormsModule,
 
     MatAutocompleteModule,
@@ -74,7 +79,10 @@ import {EmployeeComponent} from './employee/employee.component';
 
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    CategoryService
+  ],
+  entryComponents: [AppRoutingModule.COMPONENT_FACTORY],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
