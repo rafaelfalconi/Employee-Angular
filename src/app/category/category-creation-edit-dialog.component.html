@@ -1,0 +1,24 @@
+<h2 mat-dialog-title *ngIf="!edit">New Category</h2>
+<h2 mat-dialog-title *ngIf="edit">Edit Category</h2>
+<mat-dialog-content>
+    <mat-form-field *ngIf="edit">
+        <input matInput type="text" placeholder="Id" [(ngModel)]="category.id" [disabled]="edit" />
+        <mat-error>Field required</mat-error>
+    </mat-form-field>
+    <mat-form-field *ngIf="!edit">
+        <input matInput type="text" placeholder="Id" [(ngModel)]="category.id" />
+        <mat-error>Field required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="number" placeholder="Rank" required [(ngModel)]="category.rank" />
+        <mat-error>Field required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="text" placeholder="Title" [(ngModel)]="category.title">
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button [disabled]="!category.title" *ngIf="edit" (click)="save()">Save</button>
+    <button mat-raised-button [disabled]="!category.title" *ngIf="!edit" (click)="create()">Create</button>
+</mat-dialog-actions>
