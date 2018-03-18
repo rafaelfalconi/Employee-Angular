@@ -24,6 +24,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HttpService } from './core/http.service';
 import { CategoryService } from './category/category.service';
+import { EmployeeService } from './employee/employee.service';
 import { CategoryComponent } from './category/category.component';
 import { EmployeeComponent } from './employee/employee.component';
 
@@ -80,7 +81,8 @@ import { EmployeeComponent } from './employee/employee.component';
     AppRoutingModule
   ],
   providers: [
-    CategoryService
+    CategoryService,
+    EmployeeService
   ],
   entryComponents: [AppRoutingModule.COMPONENT_FACTORY],
   bootstrap: [AppComponent]

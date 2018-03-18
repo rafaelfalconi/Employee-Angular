@@ -1,39 +1,50 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { Category } from '../category/category.model';
 import { Employee } from './employee.model';
+import { EmployeeService } from './employee.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { EmployeeCreationEditDialogComponent } from './employee-creation-edit-dialog.component';
 
 @Component({
     selector: 'employee',
     templateUrl: './employee.component.html'
 })
 export class EmployeeComponent implements OnInit {
-    categoria: Category = { id: "1", rank: 1, title: "aa" };
-    employees: Employee[] = [
-        { Id: "1", Surname: "employeess", Entry: "Jan 2017", Active: true, Categoria: this.categoria, Area: "area" },
-        { Id: "2", Surname: "employee", Entry: "Jan 2017", Active: true, Categoria: this.categoria, Area: "area" }
-    ];
-    displayedColumns = [];
+
+    employees: Employee[];
+    displayedColumns = ['Id', 'Surname', 'Entry', 'Active', 'Categoria', 'Area', 'Opciones'];
     dataSource: MatTableDataSource<Employee>;
     static URL = 'Employees';
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
-    constructor(public dialog: MatDialog) {
+    constructor(public dialog: MatDialog, private employeeService: EmployeeService) {
 
     }
     ngOnInit(): void {
-
-        this.fillTable();
-
+        this.synchronize();
     }
-    fillTable() {
-
-        this.displayedColumns = ['Id', 'Surname', 'Entry', 'Active', 'Categoria', 'Area'];
-        this.dataSource = new MatTableDataSource(this.employees);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-
+    synchronize() {
+        this.employeeService.readAll().subscribe(
+            data => {
+                this.dataSource = new MatTableDataSource<Employee>(data);
+                this.dataSource.sort = this.sort;
+                this.dataSource.paginator = this.paginator;
+            }
+        );
+    }
+    edit(employee: Employee) {
+        this.employeeService.readObservable(employee.id).subscribe(
+            data => {
+                const dialogRef = this.dialog.open(EmployeeCreationEditDialogComponent);
+                dialogRef.componentInstance.employee = data;
+                dialogRef.componentInstance.edit = true;
+                dialogRef.afterClosed().subscribe(
+                    result => this.synchronize()
+                );
+            }
+        );
     }
 }

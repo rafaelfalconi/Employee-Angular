@@ -1,0 +1,28 @@
+<h2 mat-dialog-title *ngIf="!edit">New Employee</h2>
+<h2 mat-dialog-title *ngIf="edit">Edit Employee</h2>
+<mat-dialog-content>
+    <mat-form-field *ngIf="edit">
+        <input matInput type="text" placeholder="Id" [(ngModel)]="employee.id" [disabled]="edit" />
+        <mat-error>Field required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="text" placeholder="Id" [(ngModel)]="employee.surname" />
+        <mat-error>Field required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="calendar" placeholder="2018/07/05" required [(ngModel)]="employee.entry" />
+        <mat-error>Field required</mat-error>
+    </mat-form-field>
+    <mat-checkbox [(ngModel)]="employee.active" *ngIf="edit">Active</mat-checkbox>
+    <mat-form-field>
+        <input matInput type="text" placeholder="Category" [(ngModel)]="employee.categorydto.title">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="text" placeholder="Area" [(ngModel)]="employee.area">
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button [disabled]="!employee.surname" *ngIf="edit" (click)="save()">Save</button>
+    <button mat-raised-button [disabled]="!employee.surname" *ngIf="!edit" (click)="create()">Create</button>
+</mat-dialog-actions>

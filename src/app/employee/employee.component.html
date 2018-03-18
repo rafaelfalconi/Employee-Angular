@@ -6,34 +6,46 @@
     <mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="Id">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.Id}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
         </ng-container>
 
 
         <ng-container matColumnDef="Surname">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Surname </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.Surname}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.surname}} </mat-cell>
         </ng-container>
 
 
         <ng-container matColumnDef="Entry">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Entry </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.Entry}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.entry== True ? 'Active' : 'Block'}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="Active">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Active </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.Active}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.active}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="Categoria">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Categoria.title </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.Categoria.title}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.categorydto.title}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="Area">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Categoria.Area </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.Area}} </mat-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Area </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.area}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Opciones">
+            <mat-header-cell *matHeaderCellDef>
+                <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="create()">
+                    <mat-icon color="warn">person_add</mat-icon>
+                </button>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let item">
+                <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="edit(item)">
+                    <mat-icon color="warn">mode_edit</mat-icon>
+                </button>
+            </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

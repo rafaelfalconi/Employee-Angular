@@ -5,7 +5,7 @@ import { MenuComponent } from './menu/menu.component';
 import { CategoryComponent } from './category/category.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { CategoryCreationEditDialogComponent } from './category/category-creation-edit-dialog.component';
-
+import { EmployeeCreationEditDialogComponent } from './employee/employee-creation-edit-dialog.component';
 const appRoutes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: MenuComponent.URL },
     { path: MenuComponent.URL, component: MenuComponent },
@@ -28,6 +28,7 @@ export class AppRoutingModule {
         MenuComponent
     ]
     static COMPONENT_FACTORY = [
-        CategoryCreationEditDialogComponent
+        CategoryCreationEditDialogComponent,
+        EmployeeCreationEditDialogComponent
     ]
 }
