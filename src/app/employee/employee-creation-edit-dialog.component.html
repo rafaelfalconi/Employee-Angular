@@ -6,11 +6,11 @@
         <mat-error>Field required</mat-error>
     </mat-form-field>
     <mat-form-field>
-        <input matInput type="text" placeholder="Id" [(ngModel)]="employee.surname" />
+        <input matInput type="text" placeholder="Surname" [(ngModel)]="employee.surname" />
         <mat-error>Field required</mat-error>
     </mat-form-field>
     <mat-form-field>
-        <input matInput type="calendar" placeholder="2018/07/05" required [(ngModel)]="employee.entry" />
+        <input matInput type="calendar" placeholder="YYYY-MM-DD" required [(ngModel)]="employee.entry" />
         <mat-error>Field required</mat-error>
     </mat-form-field>
     <mat-checkbox [(ngModel)]="employee.active" *ngIf="edit">Active</mat-checkbox>

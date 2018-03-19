@@ -47,4 +47,11 @@ export class EmployeeComponent implements OnInit {
             }
         );
     }
+    create() {
+        const dialogRef = this.dialog.open(EmployeeCreationEditDialogComponent);
+        dialogRef.componentInstance.edit = false;
+        dialogRef.afterClosed().subscribe(
+            result => this.synchronize()
+        );
+    }
 }
