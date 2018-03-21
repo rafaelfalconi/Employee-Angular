@@ -9,10 +9,7 @@
         <input matInput type="text" placeholder="Surname" [(ngModel)]="employee.surname" />
         <mat-error>Field required</mat-error>
     </mat-form-field>
-    <mat-form-field>
-        <input matInput type="calendar" placeholder="YYYY-MM-DD" required [(ngModel)]="employee.entry" />
-        <mat-error>Field required</mat-error>
-    </mat-form-field>
+
     <mat-checkbox [(ngModel)]="employee.active" *ngIf="edit">Active</mat-checkbox>
     <mat-form-field>
         <input matInput type="text" placeholder="Category" [(ngModel)]="employee.categorydto.title">

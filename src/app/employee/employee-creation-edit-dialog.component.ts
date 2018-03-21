@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Employee } from './employee.model';
 import { Category } from '../category/category.model'
 import { EmployeeService } from './employee.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
     templateUrl: 'employee-creation-edit-dialog.component.html',
@@ -17,7 +18,7 @@ export class EmployeeCreationEditDialogComponent implements OnInit {
     categoria: Category = { id: '', rank: 1, title: '' };
 
     constructor(public dialogRef: MatDialogRef<EmployeeCreationEditDialogComponent>,
-        private employeeService: EmployeeService) {
+        private employeeService: EmployeeService, public snackBar: MatSnackBar) {
     }
 
     ngOnInit(): void {
@@ -28,14 +29,30 @@ export class EmployeeCreationEditDialogComponent implements OnInit {
     }
 
     create(): void {
-        this.employeeService.createObservable(this.employee).subscribe(
-            data => this.dialogRef.close()
-        );
+
+        if (this.employee.area == "Marketing" || this.employee.area == "Finansas"
+            || this.employee.area == "Sistemas" || this.employee.area == "Finasas") {
+            this.employeeService.createObservable(this.employee).subscribe(
+                data => this.dialogRef.close()
+            );
+        } else {
+            this.snackBar.open("areas permitidas:", "Marketing,Finansas,Sistemas,Finasas", {
+                duration: 2000,
+            });
+        }
+
     }
 
     save(): void {
-        this.employeeService.putObservable(this.employee).subscribe(
-            data => this.dialogRef.close()
-        );
+        if (this.employee.area == "Marketing" || this.employee.area == "Finansas"
+            || this.employee.area == "Sistemas" || this.employee.area == "Finasas") {
+            this.employeeService.putObservable(this.employee).subscribe(
+                data => this.dialogRef.close()
+            );
+        } else {
+            this.snackBar.open("areas permitidas:", "Marketing,Finansas,Sistemas,Finasas", {
+                duration: 2000,
+            });
+        }
     }
 }
