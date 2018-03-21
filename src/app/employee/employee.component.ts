@@ -15,7 +15,7 @@ import { EmployeeCreationEditDialogComponent } from './employee-creation-edit-di
 export class EmployeeComponent implements OnInit {
 
     employees: Employee[];
-    displayedColumns = ['Id', 'Surname', 'Entry', 'Active', 'Categoria', 'Area', 'Opciones'];
+    displayedColumns = ['Id', 'Surname',  'Active', 'Categoria', 'Area', 'Opciones'];
     dataSource: MatTableDataSource<Employee>;
     static URL = 'Employees';
     @ViewChild(MatPaginator) paginator: MatPaginator;
